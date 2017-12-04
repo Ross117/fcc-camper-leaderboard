@@ -8,10 +8,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      data: {}
+      data: []
     };
 
-    // function call to set initial state? what should the initial state be?
+    // function call to set initial state
     this.getLast30Days();
   }
 
@@ -39,7 +39,7 @@ class App extends Component {
     return (
       <div>
         <h1>Free Code Camp Leaderboard</h1>
-        <Leaderboard data={this.state.data} top100AllTime={getAllTime} top100Last30Days={getLast30Days} />
+        <Leaderboard data={this.state.data} top100AllTime={this.getAllTime.bind(this)} top100Last30Days={this.getLast30Days.bind(this)} />
       </div>
     )
   }

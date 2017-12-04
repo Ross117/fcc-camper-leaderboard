@@ -1,36 +1,29 @@
 import React from 'react';
-import TableRecord from './components/tableRecord';
+import TableRecord from './tableRecord';
 
  // this Component should have state because it will receive user input?
  // Should the state be the which option (of the two) has been selected?
- // need event handlers from parent component to enable user selection
- // child Component of App
-class Leaderboard extends Component {
-  constructor (props) {
-    super (props);
 
-    // should be null when page first loads as user has not yet made a selection - is this needed???
-    this.state = {
-      userSelection: ""
-    };
-  }
+ // child Component of App
+const Leaderboard = (props) => {
 
   const tableRecords = props.data.map( (record, index) => {
-    return <tableRecord
-      username={record[index].username}
-      image={record[index].img}
-      allTime={record[index].alltime}
-      recent={record[index].recent} />
-  });
+      return <TableRecord
+        rank={index + 1}
+        username={record.username}
+        imageURL={record.img}
+        allTime={record.alltime}
+        recent={record.recent} />
+    });
 
-  render() {
     return (
       <div className="leaderboard">
-        <button type="button" className="btn" onClick={() => props.top100AllTime}>All Time</button>
-        <button type="button" className="btn" onClick={() => props.top100Last30Days}>Recent</button>
+        <button type="button" className="btn" onClick={() => props.top100AllTime()}>All Time</button>
+        <button type="button" className="btn" onClick={() => props.top100Last30Days()}>Recent</button>
         <table className="table">
           <thead>
             <tr>
+              <th>Rank</th>
               <th>Username</th>
               <th>Image</th>
               <th>All Time Points</th>
@@ -43,7 +36,6 @@ class Leaderboard extends Component {
         </table>
       </div>
     );
-  }
 }
 
 export default Leaderboard;
