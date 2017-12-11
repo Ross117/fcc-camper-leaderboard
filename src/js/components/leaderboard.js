@@ -1,41 +1,40 @@
 import React from 'react';
 import TableRecord from './tableRecord';
 
- // this Component should have state because it will receive user input?
- // Should the state be the which option (of the two) has been selected?
-
  // child Component of App
 const Leaderboard = (props) => {
 
   const tableRecords = props.data.map( (record, index) => {
-      return <TableRecord
-        rank={index + 1}
-        username={record.username}
-        imageURL={record.img}
-        allTime={record.alltime}
-        recent={record.recent} />
-    });
+    // create an array of TableRecord components from the JSON data
+    return <TableRecord
+      rank={index + 1}
+      // give each record a unique key. Why can't I just use rank?
+      key={index + 1}
+      username={record.username}
+      imageURL={record.img}
+      recent={record.recent}
+      allTime={record.alltime} />
+  });
 
-    return (
-      <div className="leaderboard">
-        <button type="button" className="btn" onClick={() => props.top100AllTime()}>All Time</button>
-        <button type="button" className="btn" onClick={() => props.top100Last30Days()}>Recent</button>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Username</th>
-              <th>Image</th>
-              <th>All Time Points</th>
-              <th>Points from Last 30 Days</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableRecords}
-          </tbody>
-        </table>
-      </div>
-    );
+    // create the Leaderboard out of the array of TableRecord components
+  return (
+    <div className="leaderboard">
+      <table className="table table-striped table-bordered table-hover table-sm">
+        <thead className="thead-inverse">
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Image</th>
+            <th>Points from Last 30 Days</th>
+            <th>All Time Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableRecords}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default Leaderboard;
