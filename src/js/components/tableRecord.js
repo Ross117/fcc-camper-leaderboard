@@ -1,7 +1,7 @@
 import React from 'react';
 
 // child component of leaderboard
-const tableRecord = ({rank, username, imageURL, recent, allTime}) => {
+const TableRecord = ({rank, username, imageURL, recent, allTime}) => {
 
   return (
     <tr>
@@ -14,4 +14,4 @@ const tableRecord = ({rank, username, imageURL, recent, allTime}) => {
   );
 };
 
-export default tableRecord;
+export default TableRecord;
