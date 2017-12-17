@@ -1,15 +1,15 @@
 import React from 'react';
 
 // child component of leaderboard
-const TableRecord = ({rank, username, imageURL, recent, allTime}) => {
+const TableRecord = (props) => {
 
   return (
     <tr>
-      <td>{rank}</td>
-      <td>{username}</td>
-      <td><img src={imageURL}/></td>
-      <td>{recent}</td>
-      <td>{allTime}</td>
+      <td>{props.rank}</td>
+      <td>{props.username}</td>
+      <td><img src={props.imageURL}/></td>
+      <td>{props.recent}</td>
+      <td>{props.allTime}</td>
     </tr>
   );
 };

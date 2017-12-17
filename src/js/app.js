@@ -18,34 +18,39 @@ class App extends Component {
     this.getLast30Days();
   }
 
-  // need error handling?
   // ajax call function
   getLast30Days () {
     fetch('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
       .then( (response) => {
         return response.json();
-      }).then( (data) => {
-        this.setState({
-          data,
-          last30DaysBtnDisabled: true,
-          allTimeBtnDisabled: false
-        });
+      })
+      .then( (data) => {
+        this.setState( {data} );
+      })
+      .catch( () => {
+        this.setState({ data: [] });
       });
- }
+    this.setState({
+      last30DaysBtnDisabled: true,
+      allTimeBtnDisabled: false
+    });
+  }
 
-  // need error handling?
   // ajax call function
   getAllTime () {
     fetch('https://fcctop100.herokuapp.com/api/fccusers/top/alltime')
       .then( (response) => {
         return response.json();
       }).then( (data) => {
-        this.setState({
-          data,
-          allTimeBtnDisabled: true,
-          last30DaysBtnDisabled: false
-        });
+        this.setState({ data });
+      })
+      .catch( () => {
+        this.setState({ data: [] });
       });
+    this.setState({
+      allTimeBtnDisabled: true,
+      last30DaysBtnDisabled: false
+    });
   }
 
   render() {

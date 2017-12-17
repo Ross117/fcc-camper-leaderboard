@@ -8,15 +8,14 @@ const Leaderboard = (props) => {
     // create an array of TableRecord components from the JSON data
     return <TableRecord
       rank={index + 1}
-      // give each record a unique key. Why can't I just use rank?
-      key={index + 1}
+      key={record.username}
       username={record.username}
       imageURL={record.img}
       recent={record.recent}
       allTime={record.alltime} />
   });
 
-    // create the Leaderboard out of the array of TableRecord components
+  // create the Leaderboard out of the array of TableRecord components
   return (
     <div className="leaderboard">
       <table className="table table-striped table-bordered table-hover table-sm">
@@ -24,7 +23,7 @@ const Leaderboard = (props) => {
           <tr>
             <th>Rank</th>
             <th>Username</th>
-            <th>Image</th>
+            <th>Avatar</th>
             <th>Points from Last 30 Days</th>
             <th>All Time Points</th>
           </tr>
